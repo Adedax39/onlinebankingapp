@@ -8,7 +8,7 @@ import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 import "./App.css";
 import { Container } from "@mui/material";
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 function FormFloatingBasicExample() {
   return (
@@ -19,27 +19,35 @@ function FormFloatingBasicExample() {
         alignItems: "center",
         height: "100vh",
         backgroundColor: "#ADD8E6",
+        flexDirection: "column",
       }}
     >
+      <Container
+        style={{
+          fontFamily: "Arial, Helvetica, sans-serif",
+          fontSize: "30px",
+          display: "flex",
+          alignItems: "center",
 
-      <Container  style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: "30px",
-            display: "flex",
-            alignItems:"center",
-            flexWrap: "nowrap",
-            flexDirection: "column",
-            justifyContent: "center",
-            textAlign: "center"
-
-          }}>
+          flexDirection: "column",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
         <AccountBalanceIcon />
-        <p>
-          Login to your account.
+        <p
+          style={{
+            fontFamily: "Arial, Helvetica, sans-serif",
+            fontSize: "20px",
+          }}
+        >
+         <b> Adedax Bank</b>
         </p>
+
+        <p>Login to your account.</p>
       </Container>
-      
-      <Card style={{ width: "90%", }}>
+
+      <Card style={{ width: "70%" }}>
         <Card.Body>
           <>
             <FloatingLabel
@@ -72,7 +80,7 @@ function FormFloatingBasicExample() {
               >
                 Join online Banking -
                 <Tooltip title="Add" disableInteractive>
-                  <Link href="#" underline="hover">
+                  <Link href="/register" underline="hover">
                     {" Register"}
                   </Link>
                 </Tooltip>
@@ -82,7 +90,6 @@ function FormFloatingBasicExample() {
         </Card.Body>
       </Card>
     </div>
-
   );
 }
 
