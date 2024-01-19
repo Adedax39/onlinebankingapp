@@ -80,7 +80,7 @@ function FormFloatingBasicExample() {
               >
                 Join online Banking -
                 <Tooltip title="Add" disableInteractive>
-                  <Link href="/register" underline="hover">
+                  <Link href="/register/1" underline="hover">
                     {" Register"}
                   </Link>
                 </Tooltip>
