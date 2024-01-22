@@ -1,31 +1,21 @@
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import Card from 'react-bootstrap/Card';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import { useNavigate } from "react-router-dom";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import { useNavigate } from "react-router-dom";
+import Link from "@mui/material/Link";
+import Tooltip from "@mui/material/Tooltip";
 
-function BasicExample() {
-    const navigate = useNavigate();;
-    const handlePageChange = (event, value) => {
-       // Navigate to a different route depending on the page number
-       switch(value) {
-         case 1:
-           navigate("/register/1");
-           break;
-         case 2:
-           navigate("/register/2");
-           break;
-         case 3:
-           navigate("/page3");
-           break;
-         default:
-           break;
-       }
-     };
+function BasicExample2() {
+    const navigate = useNavigate();
+
+    const handleRegisterClick = () => {
+      navigate("/"); // replace "/register" with the path to your register page
+    };
+
+
+
   return (
     <div
       style={{
@@ -65,19 +55,32 @@ function BasicExample() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
-      <Button variant="primary" size="lg" type="submit" style={{alignItems:"center",}}>
-        Submit/Generate Account
-      </Button>
+     
     </Form>
     </Card.Body>
     </Card>
     <br />
-    <Stack spacing={2}>
-      <Pagination count={2} size="small" onChange={handlePageChange}/>
-      </Stack>
+    <span>
+              <p
+                style={{
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontSize: "14px",
+                  textAlign: "center",
+                }}
+              >
+                Back to login page -
+                <Tooltip title="Add" disableInteractive>
+                 
+                <Link onClick={handleRegisterClick} underline="hover">
+                        {" Login"}
+                      </Link>
+
+                </Tooltip>
+              </p>
+            </span>
      
     </div>
   );
 }
 
-export default BasicExample;
+export default BasicExample2;

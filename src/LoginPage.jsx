@@ -1,16 +1,26 @@
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 import "./App.css";
 import { Container } from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import { useNavigate } from "react-router-dom";
 
 function FormFloatingBasicExample() {
+    const navigate = useNavigate();
+
+    const handleRegisterClick = () => {
+      navigate("/register"); // replace "/register" with the path to your register page
+    };
+
+
+
   return (
     <div
       style={{
@@ -41,7 +51,7 @@ function FormFloatingBasicExample() {
             fontSize: "20px",
           }}
         >
-         <b> Adedax Bank</b>
+          <b> Adedax Bank</b>
         </p>
 
         <p>Login to your account.</p>
@@ -80,9 +90,11 @@ function FormFloatingBasicExample() {
               >
                 Join online Banking -
                 <Tooltip title="Add" disableInteractive>
-                  <Link href="/register/1" underline="hover">
-                    {" Register"}
-                  </Link>
+                 
+                <Link onClick={handleRegisterClick} underline="hover">
+                        {" Register"}
+                      </Link>
+
                 </Tooltip>
               </p>
             </span>

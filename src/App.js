@@ -1,24 +1,17 @@
 import "./App.css";
-import FormFloatingBasicExample from "./LoginPage";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import BasicExample from "./Components/Register";
-import BasicExample2 from "./Components/UserNamePassword";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HorizontalNonLinearStepper from "./Components/Alltogether";
+import FormFloatingBasicExample from "./LoginPage"
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<FormFloatingBasicExample />} />
-          <Route exact path="/register/1" element={<BasicExample />} />
-          <Route exact path="/register/2" element={<BasicExample2 />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<FormFloatingBasicExample />} />
+        <Route path="/register" element={<HorizontalNonLinearStepper />} />
+      </Routes>
+    </Router>
   );
 }
 

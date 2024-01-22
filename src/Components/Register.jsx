@@ -5,31 +5,20 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Card from 'react-bootstrap/Card';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import { useNavigate } from "react-router-dom";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import { useNavigate } from "react-router-dom";
+import Link from "@mui/material/Link";
+import Tooltip from "@mui/material/Tooltip";
 
 
 function BasicExample() {
+    const navigate = useNavigate();
 
- const navigate = useNavigate();;
- const handlePageChange = (event, value) => {
-    // Navigate to a different route depending on the page number
-    switch(value) {
-      case 1:
-        navigate("/register/1");
-        break;
-      case 2:
-        navigate("/register/2");
-        break;
-      case 3:
-        navigate("/page3");
-        break;
-      default:
-        break;
-    }
-  };
+    const handleRegisterClick = () => {
+      navigate("/"); // replace "/register" with the path to your register page
+    };
+
+
   return (
     <div
       style={{
@@ -73,9 +62,25 @@ function BasicExample() {
     </Card.Body>
     </Card>
     <br />
-    <Stack spacing={2}>
-      <Pagination count={2} size="small" onChange={handlePageChange} />
-      </Stack>
+    <span>
+              <p
+                style={{
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontSize: "14px",
+                  textAlign: "center",
+                }}
+              >
+                Back to login page -
+                <Tooltip title="Add" disableInteractive>
+                 
+                <Link onClick={handleRegisterClick} underline="hover">
+                        {" Login"}
+                      </Link>
+
+                </Tooltip>
+              </p>
+            </span>
+
     </div>
   );
 }
