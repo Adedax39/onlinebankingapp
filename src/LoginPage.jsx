@@ -19,6 +19,10 @@ function FormFloatingBasicExample() {
       navigate("/register"); // replace "/register" with the path to your register page
     };
 
+    const handleLoginClick = () => {
+      navigate("/transaction"); // replace "/register" with the path to your register page
+    };
+
 
 
   return (
@@ -70,7 +74,7 @@ function FormFloatingBasicExample() {
             <FloatingLabel controlId="floatingPassword" label="Password">
               <Form.Control type="password" placeholder="Password" />
               <br />
-              <Button variant="primary" size="lg" style={{ width: "100%" }}>
+              <Button variant="primary" size="lg" style={{ width: "100%" }} onClick={handleLoginClick}>
                 <span>Login</span>
                 <span>
                   <ArrowForwardIcon />{" "}

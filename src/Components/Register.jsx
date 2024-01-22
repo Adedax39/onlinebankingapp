@@ -55,7 +55,7 @@ function BasicExample() {
         </LocalizationProvider>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicNic">
-        <Form.Label>National Iidentity card number.</Form.Label>
+        <Form.Label>National Identity card number.</Form.Label>
         <Form.Control type="text" placeholder="Enter Your Nic Number" />
       </Form.Group>
     </Form>
