@@ -19,16 +19,16 @@ function TranscationAdmin() {
 
   const [numRows, setNumRows] = useState(5);
   const data = [
-    { id: 1, date: "2024-01-22", reference: "Ref1", credit: 100, debit: 50 },
-    { id: 2, date: "2024-01-23", reference: "Ref2", credit: 200, debit: 100 },
-    { id: 3, date: "2024-01-24", reference: "Ref3", credit: 300, debit: 150 },
-    { id: 4, date: "2024-01-25", reference: "Ref4", credit: 400, debit: 200 },
-    { id: 5, date: "2024-01-26", reference: "Ref5", credit: 500, debit: 250 },
-    { id: 6, date: "2024-01-22", reference: "Ref1", credit: 0, debit: 50 },
-    { id: 7, date: "2024-01-23", reference: "Ref2", credit: 0, debit: 100 },
-    { id: 8, date: "2024-01-24", reference: "Ref3", credit: 0, debit: 150 },
-    { id: 9, date: "2024-01-25", reference: "Ref4", credit: 0, debit: 200 },
-    { id: 10, date: "2024-01-26", reference: "Ref5", credit: 0, debit: 250 },
+    { id: 1, date: "2024-01-22", reference: "Ref1", credit: 100, debit: 50, accno: "0010000111"},
+    { id: 2, date: "2024-01-23", reference: "Ref2", credit: 200, debit: 100 , accno: "0010000111"},
+    { id: 3, date: "2024-01-24", reference: "Ref3", credit: 300, debit: 150 , accno: "0010000111"},
+    { id: 4, date: "2024-01-25", reference: "Ref4", credit: 400, debit: 200, accno: "0010000111" },
+    { id: 5, date: "2024-01-26", reference: "Ref5", credit: 500, debit: 250, accno: "0010000111"},
+    { id: 6, date: "2024-01-22", reference: "Ref1", credit: 0, debit: 50 , accno: "0010000111"},
+    { id: 7, date: "2024-01-23", reference: "Ref2", credit: 0, debit: 100 , accno: "0010000111"},
+    { id: 8, date: "2024-01-24", reference: "Ref3", credit: 0, debit: 150 , accno: "0010000111"},
+    { id: 9, date: "2024-01-25", reference: "Ref4", credit: 0, debit: 200 , accno: "0010000111"},
+    { id: 10, date: "2024-01-26", reference: "Ref5", credit: 0, debit: 250 , accno: "0010001001"},
     // More items...
   ];
   const nicdata = [
@@ -70,11 +70,41 @@ function TranscationAdmin() {
   });
   const [isValidNic, setIsValidNic] = useState(false); 
   const [result, setResult] = useState(null); 
+  const [selectedAccount,setSelectedAccount] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   const inputChanged = (e) => {
     setSelectedNic(e.target.value);
     setIsValidNic(false);
   };
+
+  const AccInputChanged = (e) =>{
+    setSelectedAccount(e.target.value)
+
+  }
+  const AccClicked = () => {
+    const transactions = data.filter((item) => item.accno === selectedAccount);
+    if (transactions.length > 0) {
+      setFilteredTransactions(transactions);
+    } else {
+      setFilteredTransactions([]);
+      toast.error("Invalid Input!");
+    }
+  };
+
+  
+  function renderTableRows(displayedData) {
+    return displayedData.map((item, index) => (
+        <tr key={index}>
+            <td>{item.id}</td>
+            <td>{item.date}</td>
+            <td>{item.reference}</td>
+            <td>{item.credit}</td>
+            <td>{item.debit}</td>
+        </tr>
+    ));
+}
+
 
   const gotClicked = () => {
     const nicItem = nicdata.find((item) => item.nic === selectedNic);
@@ -92,6 +122,9 @@ function TranscationAdmin() {
       toast.error("Invalid Input!");
     }
   };
+
+
+
 
   return (
     <div
@@ -189,57 +222,58 @@ function TranscationAdmin() {
               </Form.Label>
               <div className="d-flex justify-content-between w-100">
                 <Form.Control
-                  type="Nic"
-                  placeholder="Enter the account number"
+                   type="texts"
+                  placeholder="Enter the account number."
+                  className="flex-grow-1"
+                  value={selectedAccount}
+                  onChange={AccInputChanged}
                 />
+                 &nbsp;
                 <span>
-                  <Button variant="primary">Enter</Button>
+                  <Button variant="primary" onClick={AccClicked} >Enter</Button>
                 </span>
               </div>
             </Form.Group>
           ) : null}
         </>
       )}
-
       <h1
-        style={{
-          fontFamily: "Arial, Helvetica, sans-serif",
-          marginTop: "30px",
-        }}
-      >
-        Transaction History
-      </h1>
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        marginTop: "30px",
+      }}
+    >
+      Transaction History
+    </h1>
+      {account === 1 || nic == 1 && filteredTransactions !== null ? (
+  <>
 
-      <Table striped bordered hover style={{ width: "100%", marginTop: "1px" }}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Refference</th>
-            <th>Credit</th>
-            <th>Debit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {displayedData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.id}</td>
-              <td>{item.date}</td>
-              <td>{item.reference}</td>
-              <td>{item.credit}</td>
-              <td>{item.debit}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      <Button
-        variant="primary"
-        size="lg"
-        style={{ width: "90%" }}
-        onClick={() => setNumRows(numRows + 5)}
-      >
-        Load More
-      </Button>
+
+    <Table striped bordered hover style={{ width: "100%", marginTop: "1px" }}>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Refference</th>
+          <th>Credit</th>
+          <th>Debit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {renderTableRows(filteredTransactions || [])}
+      </tbody>
+    </Table>
+    <Button
+      variant="primary"
+      size="lg"
+      style={{ width: "90%" }}
+      onClick={() => setNumRows(numRows + 5)}
+    >
+      Load More
+    </Button>
+  </>
+) : null}
+
     </div>
   );
 }
