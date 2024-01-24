@@ -1,35 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Link from "@mui/material/Link";
-import Tooltip from "@mui/material/Tooltip";
-import "./App.css";
 import { Container } from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useNavigate } from "react-router-dom";
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import HomeIcon from '@mui/icons-material/Home';
 
-function FormFloatingBasicExample() {
+function AdminLogin() {
+
     const navigate = useNavigate();
 
-    const handleRegisterClick = () => {
-      navigate("/register"); // replace "/register" with the path to your register page
-    };
-
-    const handleLoginClick = () => {
-      navigate("/transaction"); // replace "/register" with the path to your register page
-    };
-    
-    const clickAdmin = () =>{
-      navigate("/admin");
+    const handleGotClicked = () =>{
+        navigate("/");
+      
+      }
+    const transLog = () =>{
+        navigate("/transactionlog");
 
     }
-
-
 
   return (
     <div
@@ -54,7 +46,8 @@ function FormFloatingBasicExample() {
           textAlign: "center",
         }}
       >
-        <AccountCircleRoundedIcon style={{ position: 'absolute', top: 8, right: 10 }} onClick={clickAdmin}/>
+       <HomeIcon style={{ position: 'absolute', top: 8, left: 10 }} onClick ={handleGotClicked}/>
+
         <AccountBalanceIcon />
         <p
           style={{
@@ -65,7 +58,7 @@ function FormFloatingBasicExample() {
           <b> Adedax Bank</b>
         </p>
 
-        <p>Login to your account.</p>
+        <p>Login to your employee account.</p>
       </Container>
 
       <Card style={{ width: "70%" }}>
@@ -73,15 +66,15 @@ function FormFloatingBasicExample() {
           <>
             <FloatingLabel
               controlId="floatingInput"
-              label="Username"
+              label="Employee Id"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Username" />
+              <Form.Control type="Id" placeholder="Employee Id" />
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword" label="Password">
               <Form.Control type="password" placeholder="Password" />
               <br />
-              <Button variant="primary" size="lg" style={{ width: "100%" }} onClick={handleLoginClick}>
+              <Button variant="primary" size="lg" style={{ width: "100%" }} onClick={transLog} >
                 <span>Login</span>
                 <span>
                   <ArrowForwardIcon />{" "}
@@ -90,30 +83,10 @@ function FormFloatingBasicExample() {
             </FloatingLabel>
           </>
           <br />
-          <div>
-            <span>
-              <p
-                style={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
-                  fontSize: "14px",
-                  textAlign: "center",
-                }}
-              >
-                Join online Banking -
-                <Tooltip title="Add" disableInteractive>
-                 
-                <Link onClick={handleRegisterClick} underline="hover">
-                        {" Register"}
-                      </Link>
-
-                </Tooltip>
-              </p>
-            </span>
-          </div>
         </Card.Body>
       </Card>
     </div>
   );
 }
 
-export default FormFloatingBasicExample;
+export default AdminLogin;
